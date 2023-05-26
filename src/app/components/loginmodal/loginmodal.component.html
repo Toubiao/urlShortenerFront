@@ -1,0 +1,33 @@
+<form (ngSubmit)="login()" [formGroup]="loginForm" class="login-form">
+  <div class="modal-header modal-register no-border-header text-center">
+    <button (click)="activeModal.dismiss('Cross click')" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Log in to your account</h4>
+  </div>
+  <div class="modal-body">
+    <div [ngClass]="{'has-danger' : (submitted && f['username'].errors) || unauthorized }" class="form-group mt-2">
+      <input [ngClass]="{ 'is-invalid form-control-danger': (submitted && f['username'].errors) || unauthorized }" name="username"
+             class="form-control form-control-lg" formControlName="username" placeholder="Username" autocomplete="on"
+             type="text">
+      <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+        <div *ngIf="f['username'].errors['required']">Username is required</div>
+      </div>
+    </div>
+    <div [ngClass]="{'has-danger' : (submitted && f['password'].errors) || unauthorized }" class="form-group mt-2">
+      <input [ngClass]="{ 'is-invalid form-control-danger': (submitted && f['password'].errors) || unauthorized }" name="password"
+             class="form-control form-control-lg" formControlName="password" placeholder="Password" autocomplete="on"
+             type="password">
+      <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+        <div *ngIf="f['password'].errors['required']">Password is required</div>
+      </div>
+    </div>
+    <div *ngIf="unauthorized" class="alert alert-danger mb-2">
+      {{ errorMsg }}
+    </div>
+    <button class="btn btn-primary mt-2" type="submit">Log in</button>
+  </div>
+  <div class="modal-register modal-footer no-border-footer">
+    <!-- <span class="text-muted text-center">Looking to <a>create an account</a>?</span> -->
+  </div>
+</form>

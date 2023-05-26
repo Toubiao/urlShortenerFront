@@ -1,0 +1,36 @@
+<form (ngSubmit)="addUrl()" [formGroup]="urlForm" class="url-form">
+  <!-- Modal header -->
+  <div class="modal-header">
+    <!-- Close button -->
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <!-- Title -->
+    <h4 class="modal-title">Add URL</h4>
+  </div>
+  <!-- Modal body -->
+  <div class="modal-body">
+    <!-- URL field -->
+    <div class="form-group">
+
+      <div [ngClass]="{'has-danger' : (submitted && f['url'].errors) || unauthorized }" class="form-group mt-2">
+        <input [ngClass]="{ 'is-invalid form-control-danger': (submitted && f['url'].errors) || unauthorized }" name="url"
+               class="form-control form-control-lg" formControlName="url" placeholder="Enter URL" autocomplete="on"
+               type="text">
+        <div *ngIf="submitted && f['url'].errors" class="invalid-feedback">
+          <div *ngIf="f['url'].errors?.['required']">Url is required</div>
+          <div *ngIf="f['url'].errors?.['pattern']">Url must be valid</div>
+        </div>
+      </div>
+
+
+  </div>
+  </div>
+  <!-- Modal footer -->
+  <div class="modal-footer">
+    <!-- Close button -->
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary">Add</button>
+  </div>
+</form>

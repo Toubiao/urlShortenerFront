@@ -1,0 +1,28 @@
+<button class="btn btn-primary mb-2" (click)="addRow()">Add URL</button>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Original URL</th>
+    <th scope="col">Shortened URL</th>
+    <th scope="col">Creation Date</th>
+    <th scope="col">Expiration Date</th>
+    <th scope="col">Active</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let url of urls ; let i = index;trackBy: trackByShortUrl">
+    <td>{{ url.originalUrl }}</td>
+    <td>{{ url.shortenedUrl }}</td>
+    <td>{{ url.creationDate | date }}</td>
+    <td>{{ url.expirationDate | date }}</td>
+    <td>
+      <input type="checkbox" [checked]="url.active" (change)="handleCheckboxChange(url, $event.target)">
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="deleteRow(url,i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
